@@ -19,7 +19,38 @@
 </style>
 </head>
 <body>
+    <!--login page  -->
+    <section class="flex justify-center items-center min-h-screen">
+    <div class="p-[32px] border-base-300 rounded-box border shadow-md w-[33%]">
+    <fieldset class="fieldset ">
+    <div class="flex flex-col justify-center items-center">
+    <img src="./assets/github-logo.png" alt="">
     <h2 class="text-[24px] font-semibold">GitHub Issues Tracker</h2>
-    <p>Sign in to manage your issues</p>
+    <p class="text-gray-500 text-[16px]">Sign in to manage your issues</p>
+    </div>
+
+  <label class="label text-black text-[16px]">Username</label>
+  <input type="text" id="username" class="input w-full outline-none" placeholder="Enter Username" />
+  <p class="text-[14px] text-blue-500">Default: admin</p>
+
+  <label class="label text-black text-[16px]">Password</label>
+  <input id="password" type="password" class="input w-full outline-none" placeholder="Enter Password" />
+   <p class="text-[14px] text-blue-500">Default: admin123</p>
+
+  <button id="login-btn" class="btn bg-blue-600 text-white mt-4 text-[16px]">Sign In</button>
+    </fieldset>
+
+    <div class="text-center">
+        <h2 class="py-[24px]">OR</h2>
+        <p class="text-[14px] text-gray-500">Demo Credentials:</p>
+        <div class="py-[24px] bg-base-200 rounded-md flex flex-col justify-center items-center">
+            <p><span class="font-semibold">Username:</span> admin</p>
+            <p><span class="font-semibold">Password:</span> admin123</p>
+        </div>
+    </div>
+</div></section>
+
+<script src="./script/login.js"></script>
+
 </body>
 </html>
