@@ -9,4 +9,10 @@ document.getElementById("login-btn").addEventListener("click", function(){
         alert("Login success!");
         window.location.assign("main.html");
     }
+    else {
+        alert("Login failed!");
+        return;
+    }
 })
+
+ 

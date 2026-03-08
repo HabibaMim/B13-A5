@@ -4,8 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    *{ font-family: "Geist", sans-serif;}
+</style>
 </head>
-<body>
-    <p>hello</p>
+<body class="bg-[#F8FAFC]">
+    <!-- navbar -->
+    <section class="navbar bg-base-100 shadow-sm flex justify-center">
+        <div class="flex justify-between w-[90%]">
+  <div class="flex-1">
+    <a class="flex font-semibold text-[24px] gap-[3px]">
+        <img class="h-[36px] w-[36px]" src="./assets/github-logo.png" alt="">
+        <p class="hidden sm:block">GitHub Issues Tracker</p>
+    </a>
+  </div>
+  <div class="flex justify-between">
+    <label class="input focus-within:outline-none">
+  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+  <input class="outline-none" type="search" required placeholder="Search issues..." />
+</label>
+    
+        <div class="navbar-end">
+    <a class="w-[120px] bg-blue-600 text-white btn">
+        Search</a>
+  </div>
+  </div>
+</div>
+    </section>
+    <section>
+    <!-- swich tabs -->
+     <div class="flex items-center px-[24px] mt-[60px] rounded-md flex h-[90px] mx-auto shadow-md bg-white w-[70%]">
+         <div class=" sm:gap-[10px] md-[16px]">
+            <button onclick="switchTab('all')" id="tab-all" class="py-[5px] sm:px-[20px] px-[10px] rounded-md border-gray-100 border-[1px] transition-all duration-200">All</button>
+            <button onclick="switchTab('open')" id="tab-open" class="py-[5px] px-[20px] rounded-md border-gray-100 border-[1px] transition-all duration-200">Open</button>
+            <button onclick="switchTab('closed')" id="tab-closed" class="py-[5px] px-[20px] bg-white rounded-md border-gray-100 border-[1px] transition-all duration-200">Closed</button>
+        </div></div>
+     </section>
+
+     <section>
+        <!-- cards -->
+                <div id="all-container" class="mt-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto">
+        </div>
+     </section>
+     <script src="./script/main.js"></script>
 </body>
 </html>
