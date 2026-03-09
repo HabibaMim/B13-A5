@@ -52,21 +52,79 @@
   </div>
 </div>
     </section>
+    <div id="all-sections">
+      <!-- swich tabs -->
+    
+      
     <section>
-    <!-- swich tabs -->
      <div class="flex items-center px-[24px] mt-[60px] rounded-md flex h-[90px] mx-auto shadow-md bg-white w-[70%]">
          <div class=" sm:gap-[10px] md-[16px]">
-            <button onclick="switchTab('all')" id="tab-all" class="py-[5px] sm:px-[20px] px-[10px] rounded-md border-gray-100 border-[1px] transition-all duration-200">All</button>
-            <button onclick="switchTab('open')" id="tab-open" class="py-[5px] px-[20px] rounded-md border-gray-100 border-[1px] transition-all duration-200">Open</button>
-            <button onclick="switchTab('closed')" id="tab-closed" class="py-[5px] px-[20px] bg-white rounded-md border-gray-100 border-[1px] transition-all duration-200">Closed</button>
+            <button onclick="switchTab('all')" id="tab-all" class="allbtn py-[5px] sm:px-[20px] px-[10px] rounded-md border-gray-200 border-[1px] transition-all duration-200">All</button>
+            <button onclick="switchTab('open')" id="tab-open" class="openbtn py-[5px] px-[20px] rounded-md border-gray-200 border-[1px] transition-all duration-200">Open</button>
+            <button onclick="switchTab('closed')" id="tab-closed" class="closedbtn py-[5px] px-[20px] bg-white rounded-md border-gray-200 border-[1px] transition-all duration-200">Closed</button>
         </div></div>
      </section>
-
-     <section>
-        <!-- cards -->
-                <div id="all-container" class="mt-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto">
+    <div id="allcards">
+          <div class=" mt-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md flex justify-between gap-[12px] w-[70%] mx-auto">
+            <div class="flex items-center gap-[8px]">
+            <img class="h-[32px] w-[32px]" src="./assets/Aperture.png" alt="">
+            <div>
+            <p class="text-[20px] font-semibold"><span id="count-all">0</span> Issues</p>
+            <p class="text-[16px] text-gray-500">Track and manage your project issues</p></div></div>
+            <div class="flex gap-[15px]">
+                <div class="flex items-center gap-[4px]">
+                    <p><img src="./assets/green.png" alt=""></p>
+                    <p>Open</p>
+                </div>
+                <div class="flex items-center gap-[4px]">
+                    <p><img src="./assets/purple.png" alt=""></p>
+                    <p>Closed</p>
+                </div>
+            </div>
         </div>
+ <!-- cards -->
+     <section>
+       
+                <div id="all-container" class=" mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto">
+        </div>
+        <!-- Loading Spinner -->
+         <div>
+            <span id="loadingSpinner" class="loading loading-infinity loading-xl flex h-[50vh] hidden justify-center items-center mx-auto"></span>
+         </div>
      </section>
+     <!-- open closed section -->
+     <section id="open-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto"></section>
+     <section id="closed-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto"></section>
+    </div>
+     </div>
+     <!-- modal -->
+      <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="modal" class="modal p-[32px] ">
+  <div class="modal-box space-y-[24px]">
+    <div>
+        <p id="modaltitle" class="text-[24px] font-bold"></p>
+        <div class="flex gap-[10px]">
+        <p class="badge badge-success text-white" id="modalstatus"></p>
+        <p id="modalassignee" class="text-[12px] text-gray-500"></p>
+        <p class="text-[12px] text-gray-500" id="modalupdatedAt"></p></div>
+    </div>
+    <div>
+        <p class="badge badge-soft badge-error text-[12px]" id="modallabel0"></p>
+        <p class="badge badge-soft badge-warning text-[12px]" id="modallabel1"></p>
+    </div>
+    <p class="text-gray-500" id="description"></p>
+    <div class="grid grid-cols-2">
+    <p class="font-semibold" id="modalassignee1"></p>
+    <p class="badge badge-error" id="priority"></p></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button onclick="document.getElementById('modal').close()" class="btn outline-none bg-blue-600 text-white">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
      <script src="./script/main.js"></script>
 </body>
 </html>

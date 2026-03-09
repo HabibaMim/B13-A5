@@ -2,6 +2,20 @@ let currentTab= "all";
 const tabActive =["bg-blue-500","text-white"];
 const tabInactive =["bg-white"];
 
+const allStat=document.getElementById("count-all");
+const modal = document.getElementById("modal");
+
+const modaltitle = document.getElementById("modaltitle");
+const modalstatus = document.getElementById("modalstatus");
+const modalassignee = document.getElementById("modalassignee");
+const modalupdatedAt = document.getElementById("modalupdatedAt");
+const modallabel0 = document.getElementById("modallabel0");
+const modallabel1 = document.getElementById("modallabel1");
+const description = document.getElementById("description");
+const modalassignee1 = document.getElementById("modalassignee1");
+const priority = document.getElementById("priority");
+
+
 function switchTab(tab){
     const tabs=["all", "open", "closed"];
     currentTab=tab;
@@ -19,40 +33,40 @@ function switchTab(tab){
         
             }
     }}
-    switchTab(currentTab);
+    switchTab(currentTab);  
 
-// // const categoriesContainer =document.getElementById("categoriesContainer")
-
-// // async function loadCategories (){
-// //     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues",);
-// //     const data = await res.json();
-// //     console.log(data);
-// //     data.data.forEach((category)=>{
-// //         const btn = document.createElement("button");
-// //         btn.className= "w-[120px] py-[5px] px-[20px] rounded-md border-gray-100 border-[1px] transition-all duration-200";
-// //         btn.innerHTML =category.status;
-// //         categoriesContainer.appendChild(btn);
-// //     })
-    
-// //     }
-    
-
-const categoriesContainer =document.getElementById("all-container")
+const categoriesContainer =document.getElementById("all-container");
+const openContainer =document.getElementById("open-section");
+const closedContainer= document.getElementById("closed-section");
+const LoadingSpinner=document.getElementById("loadingSpinner");
 
 // loadCategories ();
-
-async function loadCards (){
-    const res = await fetch ("https://phi-lab-server.vercel.app/api/v1/lab/issues");
-    const data = await res.json();
-    displayCards(data.data);
+function showLoading (){
+ LoadingSpinner.classList.remove("hidden");
+ categoriesContainer.innerHTML="";
 }
 
-function displayCards(cards){
+function hideLoading(){
+ LoadingSpinner.classList.add("hidden");
+}
+
+let allCardsData=[];
+async function loadCards (){
+   showLoading ();
+    const res = await fetch ("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await res.json();
+   hideLoading();
+    allCardsData=data.data;
+    displayCards(allCardsData, categoriesContainer);
+}
+
+function displayCards(cards, container){
+    container.innerHTML ="";
     cards.forEach((card) => {
         const card1 = document.createElement("div")
         card1.className="bg-white"
         card1.innerHTML=`  <div>
-                <div class="border-1 h-[256px] border-gray-200 bg-white shadow-md rounded-md">
+                <div class="card cursor-pointer border-1 h-[256px] border-gray-200 bg-white shadow-md rounded-md" onclick="openModal(${card.id})">
                     <div class="p-[16px] border-b-1 border-gray-200">
                     <div class="flex justify-between">
                         <img src="./assets/Open-Status.png" alt="">
@@ -76,7 +90,62 @@ function displayCards(cards){
                 </div>
             </div>
             </div>`;
-        categoriesContainer.appendChild(card1);
+        container.appendChild(card1);
+        updateStat();
     } )
 }
    loadCards();
+    
+
+
+    document.getElementById("tab-open").addEventListener("click", () =>{
+        categoriesContainer.classList.add("hidden");
+        closedContainer.classList.add("hidden");
+        openContainer.classList.remove("hidden");
+        const openCards=allCardsData.filter(card => card.status ==="open");
+        displayCards(openCards, openContainer);
+    updateStat();});
+
+     document.getElementById("tab-closed").addEventListener("click", () =>{
+        categoriesContainer.classList.add("hidden");
+        openContainer.classList.add("hidden");
+        closedContainer.classList.remove("hidden");
+        const closedCards=allCardsData.filter(card => card.status ==="closed");
+        displayCards(closedCards, closedContainer);
+    updateStat();});
+
+     document.getElementById("tab-all").addEventListener("click", () =>{
+        closedContainer.classList.add("hidden");
+        openContainer.classList.add("hidden");
+        categoriesContainer.classList.remove("hidden");
+        displayCards(allCardsData, categoriesContainer);
+    updateStat();});
+
+    async function openModal (id){
+        const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,);
+        const data = await res.json();
+        const cardDetails = data.data;
+        modaltitle.textContent=cardDetails.title;
+        modalstatus.textContent=cardDetails.status;
+        modalassignee.textContent=cardDetails.assignee;
+        modalupdatedAt.textContent=cardDetails.updatedAt;
+        modallabel0.textContent=cardDetails.labels[0];
+        modallabel1.textContent=cardDetails.labels[1];
+        description.textContent=cardDetails.description;
+        modalassignee1.textContent=cardDetails.assignee;
+        priority.textContent=cardDetails.priority;
+
+        modal.showModal();
+    }
+function updateStat (){
+
+
+const counts = {
+    all: categoriesContainer.children.length,
+    open: openContainer.children.length,
+    closed: closedContainer.children.length,
+};
+
+allStat.innerText = counts[currentTab]
+
+}
