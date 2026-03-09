@@ -53,6 +53,7 @@ function hideLoading(){
 
 let allCardsData=[];
 async function loadCards (){
+    
    showLoading ();
     const res = await fetch ("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
@@ -100,26 +101,32 @@ function displayCards(cards, container){
 
 
     document.getElementById("tab-open").addEventListener("click", () =>{
+        showLoading ();
         categoriesContainer.classList.add("hidden");
         closedContainer.classList.add("hidden");
         openContainer.classList.remove("hidden");
         const openCards=allCardsData.filter(card => card.status ==="open");
         displayCards(openCards, openContainer);
+        hideLoading();
     updateStat();});
 
      document.getElementById("tab-closed").addEventListener("click", () =>{
+        showLoading ();
         categoriesContainer.classList.add("hidden");
         openContainer.classList.add("hidden");
         closedContainer.classList.remove("hidden");
         const closedCards=allCardsData.filter(card => card.status ==="closed");
         displayCards(closedCards, closedContainer);
+        hideLoading();
     updateStat();});
 
      document.getElementById("tab-all").addEventListener("click", () =>{
+        showLoading ();
         closedContainer.classList.add("hidden");
         openContainer.classList.add("hidden");
         categoriesContainer.classList.remove("hidden");
         displayCards(allCardsData, categoriesContainer);
+        hideLoading();
     updateStat();});
 
     async function openModal (id){
