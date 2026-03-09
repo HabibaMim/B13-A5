@@ -136,7 +136,7 @@ function displayCards(cards, container){
         modaltitle.textContent=cardDetails.title;
         modalstatus.textContent=cardDetails.status;
         modalstatus.className=`${cardDetails.status==="open" ? "badge badge-soft badge-success" : "badge badge-soft badge-primary"}`
-        modalassignee.innerHTML=`${cardDetails.assignee==="" ? "" : `Opened by ${cardDetails.assignee}`}`;
+        modalassignee.innerHTML=`${cardDetails.assignee==="" ? "" : cardDetails.status==="open"? `Opened by ${cardDetails.assignee}`: `Closed by ${cardDetails.assignee}`}`;
         modalupdatedAt.innerHTML=`${new Date(cardDetails.updatedAt).toLocaleDateString()}`;
         modallabel0.textContent=cardDetails.labels[0];
         modallabel0.className=`${cardDetails.labels[0]==="bug" ? "badge badge-soft badge-error" : cardDetails.labels[0]==="help wanted" ? "badge badge-soft badge-warning" : cardDetails.labels[0]==="enhancement" ? "badge badge-soft badge-info" : "badge badge-soft badge-success"}`
