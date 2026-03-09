@@ -175,6 +175,17 @@ displayCards(allWords, categoriesContainer);
 displayCards(allOpenWords, openContainer);
  const allClosedWords=allWords.filter(card => card.status ==="closed");
 displayCards(allClosedWords, closedContainer);
-
+document.getElementById("tab-open").addEventListener("click", () =>{
+    const allOpenWords=allWords.filter(card => card.status ==="open");
+displayCards(allOpenWords, openContainer);
+updateStat ();
+});
+document.getElementById("tab-closed").addEventListener("click", () =>{
+    const allClosedWords=allWords.filter(card => card.status ==="closed");
+displayCards(allClosedWords, closedContainer);
+updateStat ();})
+document.getElementById("tab-all").addEventListener("click", () =>{
+    displayCards(allWords, categoriesContainer);
+    updateStat ();})
 });
 });
