@@ -66,18 +66,18 @@ function displayCards(cards, container){
         const card1 = document.createElement("div")
         card1.className="bg-white"
         card1.innerHTML=`  <div>
-                <div class="card cursor-pointer border-1 h-[256px] border-gray-200 bg-white shadow-md rounded-md" onclick="openModal(${card.id})">
+                <div class="card cursor-pointer border-t-3 ${card.status==="open" ? "border-[#00A96E]" : "border-[#A855F7]"} h-[256px] bg-white shadow-md rounded-md" onclick="openModal(${card.id})">
                     <div class="p-[16px] border-b-1 border-gray-200">
                     <div class="flex justify-between">
                         <img src="./assets/Open-Status.png" alt="">
-                        <p class="text-[12px]">${card.priority}</p>
+                        <p class="text-[12px] ${card.priority==="high" ? "badge badge-soft badge-error": card.priority==="medium" ? "badge badge-soft badge-warning": "badge badge-soft badge-primary"}">${card.priority}</p>
                     </div>
                     <div>
                        <p class="text-[14px] font-semibold"> ${card.title}</p>
                         <p class="text-[12px] text-gray-500">${card.description}</p>
                         <div class="flex gap-[8px]">
                         <div class="text-[11px] badge badge-soft badge-error">${card.labels[0]}</div>
-                        <div class="text-[11px] badge badge-soft badge-warning">${card.labels[1]}</div>
+                        <div class="text-[11px] badge badge-soft ${card.labels[1]===undefined ? "hidden" : "block"} badge-warning">${card.labels[1]}</div>
                         </div>
                     </div>
                     </div>
@@ -149,3 +149,17 @@ const counts = {
 allStat.innerText = counts[currentTab]
 
 }
+
+document.getElementById("btn-search").addEventListener("click",()=>{
+    const input = document.getElementById("input-search");
+    const searchValue =input.value.trim().toLowerCase();
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+    const allWords=data.data;
+displayCards(allWords, categoriesContainer);
+displayCards(allWords, closedContainer);
+displayCards(allWords, openContainer);
+
+});
+});
