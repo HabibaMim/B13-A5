@@ -69,15 +69,15 @@ function displayCards(cards, container){
                 <div class="card cursor-pointer border-t-3 ${card.status==="open" ? "border-[#00A96E]" : "border-[#A855F7]"} h-[256px] bg-white shadow-md rounded-md" onclick="openModal(${card.id})">
                     <div class="p-[16px] border-b-1 border-gray-200">
                     <div class="flex justify-between">
-                        <img src="./assets/Open-Status.png" alt="">
+                        ${card.status==="open" ? `<img src="./assets/Open-Status.png" alt="">` : `<img src="./assets/Closed-Status.png" alt="">` }
                         <p class="text-[12px] ${card.priority==="high" ? "badge badge-soft badge-error": card.priority==="medium" ? "badge badge-soft badge-warning": "badge badge-soft badge-primary"}">${card.priority}</p>
                     </div>
                     <div>
                        <p class="text-[14px] font-semibold"> ${card.title}</p>
                         <p class="text-[12px] text-gray-500">${card.description}</p>
                         <div class="flex gap-[8px]">
-                        <div class="text-[11px] badge badge-soft badge-error">${card.labels[0]}</div>
-                        <div class="text-[11px] badge badge-soft ${card.labels[1]===undefined ? "hidden" : "block"} badge-warning">${card.labels[1]}</div>
+                        <div class="text-[11px] ${card.labels[0]==="bug" ? "badge badge-soft badge-error" : card.labels[0]==="help wanted" ? "badge badge-soft badge-warning" : card.labels[0]==="enhancement" ? "badge badge-soft badge-info" : "badge badge-soft badge-success"}">${card.labels[0]}</div>
+                        <div class="text-[11px] ${card.labels[1]==="bug" ? "badge badge-soft badge-error" : card.labels[1]==="help wanted" ? "badge badge-soft badge-warning" : card.labels[1]==="enhancement" ? "badge badge-soft badge-info" : card.labels[1]===undefined ? "" : "badge badge-soft badge-success"} ${card.labels[1]===undefined ? "hidden" : "block"}">${card.labels[1]}</div>
                         </div>
                     </div>
                     </div>
@@ -127,13 +127,17 @@ function displayCards(cards, container){
         const cardDetails = data.data;
         modaltitle.textContent=cardDetails.title;
         modalstatus.textContent=cardDetails.status;
-        modalassignee.textContent=cardDetails.assignee;
-        modalupdatedAt.textContent=cardDetails.updatedAt;
+        modalstatus.className=`${cardDetails.status==="open" ? "badge badge-soft badge-success" : "badge badge-soft badge-primary"}`
+        modalassignee.innerHTML=`${cardDetails.assignee==="" ? "" : `Opened by ${cardDetails.assignee}`}`;
+        modalupdatedAt.innerHTML=`${new Date(cardDetails.updatedAt).toLocaleDateString()}`;
         modallabel0.textContent=cardDetails.labels[0];
+        modallabel0.className=`${cardDetails.labels[0]==="bug" ? "badge badge-soft badge-error" : cardDetails.labels[0]==="help wanted" ? "badge badge-soft badge-warning" : cardDetails.labels[0]==="enhancement" ? "badge badge-soft badge-info" : "badge badge-soft badge-success"}`
         modallabel1.textContent=cardDetails.labels[1];
+          modallabel1.className=`${cardDetails.labels[1]==="bug" ? "badge badge-soft badge-error" : cardDetails.labels[1]==="help wanted" ? "badge badge-soft badge-warning" : cardDetails.labels[1]==="enhancement" ? "badge badge-soft badge-info" : cardDetails.labels[1]===undefined ? "" : "badge badge-soft badge-success"}`
         description.textContent=cardDetails.description;
         modalassignee1.textContent=cardDetails.assignee;
         priority.textContent=cardDetails.priority;
+        priority.className=`${cardDetails.priority==="high" ? "badge badge-error" : cardDetails.priority==="medium" ? "badge badge-warning" : "badge badge-primary"}`
 
         modal.showModal();
     }

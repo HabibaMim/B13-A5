@@ -23,12 +23,12 @@
     <section class="navbar bg-base-100 shadow-sm flex justify-center">
         <div class="flex justify-between w-[90%]">
   <div class="flex-1">
-    <a class="flex font-semibold text-[24px] gap-[3px]">
+    <a class="flex font-semibold items-center text-[24px] sm:gap-[3px]">
         <img class="h-[36px] w-[36px]" src="./assets/github-logo.png" alt="">
         <p class="hidden sm:block">GitHub Issues Tracker</p>
     </a>
   </div>
-  <div class="flex justify-between">
+  <div class="flex items-center gap-[10px] sm:gap-[0px] justify-between">
     <label class="input focus-within:outline-none">
   <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g
@@ -42,11 +42,11 @@
       <path d="m21 21-4.3-4.3"></path>
     </g>
   </svg>
-  <input id="input-search" class="outline-none" type="search" required placeholder="Search issues..." />
+  <input id="input-search" class="outline-none w-[120px] sm:w-full" type="search" required placeholder="Search issues..." />
 </label>
     
         <div class="navbar-end">
-    <button id="btn-search" class="w-[120px] bg-blue-600 text-white btn">
+    <button id="btn-search" class="sm:w-[120px] bg-blue-600 text-white btn">
         Search</button>
   </div>
   </div>
@@ -57,16 +57,16 @@
     
       
     <section>
-     <div class=" flex items-center px-[24px] mt-[60px] rounded-md flex h-[90px] mx-auto shadow-md bg-white w-[70%]">
-         <div class=" sm:gap-[10px] md-[16px]">
-            <button onclick="switchTab('all')" id="tab-all" class="allbtn py-[5px] sm:px-[20px] px-[10px] rounded-md border-gray-200 border-[1px] transition-all duration-200">All</button>
+     <div class=" flex items-center px-[24px] mt-[60px] rounded-md h-[90px] mx-auto shadow-md bg-white w-[90%] sm:w-[70%]">
+         <div class="flex w-full justify-center gap-[7px] sm:justify-start sm:gap-[10px] md-[16px]">
+            <button onclick="switchTab('all')" id="tab-all" class="allbtn py-[5px] px-[20px] rounded-md border-gray-200 border-[1px] transition-all duration-200">All</button>
             <button onclick="switchTab('open')" id="tab-open" class="openbtn py-[5px] px-[20px] rounded-md border-gray-200 border-[1px] transition-all duration-200">Open</button>
             <button onclick="switchTab('closed')" id="tab-closed" class="closedbtn py-[5px] px-[20px] bg-white rounded-md border-gray-200 border-[1px] transition-all duration-200">Closed</button>
         </div></div>
      </section>
     <div id="allcards">
-          <div class=" mt-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md flex justify-between gap-[12px] w-[70%] mx-auto">
-            <div class="flex items-center gap-[8px]">
+          <div class=" mt-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:flex justify-between gap-[12px] w-[90%] sm:w-[70%] mx-auto">
+            <div class="sm:flex grid grid-cols-1 items-center gap-[8px]">
             <img class="h-[32px] w-[32px]" src="./assets/Aperture.png" alt="">
             <div>
             <p class="text-[20px] font-semibold"><span id="count-all">0</span> Issues</p>
@@ -85,7 +85,7 @@
  <!-- cards -->
      <section>
        
-                <div id="all-container" class=" mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto">
+                <div id="all-container" class=" mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[90%] sm:w-[70%] mx-auto">
         </div>
         <!-- Loading Spinner -->
          <div>
@@ -93,17 +93,17 @@
          </div>
      </section>
      <!-- open closed section -->
-     <section id="open-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto"></section>
-     <section id="closed-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[70%] mx-auto"></section>
+     <section id="open-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[90%] sm:w-[70%] mx-auto"></section>
+     <section id="closed-section" class="hidden mb-[24px] p-[24px] border-gray-100 border-[1px] bg-[#fbfbfbFF] shadow-md grid grid-cols-1 sm:grid-cols-4 gap-[12px] w-[90%] sm:w-[70%] mx-auto"></section>
     </div>
      </div>
      <!-- modal -->
       <!-- Open the modal using ID.showModal() method -->
 
 <dialog id="modal" class="modal p-[32px] ">
-  <div class="modal-box space-y-[24px]">
+  <div class="modal-box outline-none space-y-[5px] sm:space-y-[24px]">
     <div>
-        <p id="modaltitle" class="text-[24px] font-bold"></p>
+        <p id="modaltitle" class="sm:text-[24px] text-[20px] font-bold"></p>
         <div class="flex gap-[10px]">
         <p class="badge badge-success text-white" id="modalstatus"></p>
         <p id="modalassignee" class="text-[12px] text-gray-500"></p>
@@ -113,13 +113,13 @@
         <p class="badge badge-soft badge-error text-[12px]" id="modallabel0"></p>
         <p class="badge badge-soft badge-warning text-[12px]" id="modallabel1"></p>
     </div>
-    <p class="text-gray-500" id="description"></p>
+    <p class="text-gray-500 text-[13px] sm:text-[16px]" id="description"></p>
     <div class="grid grid-cols-2 bg-gray-100 p-[10px] rounded-md">
-        <p class="text-gray-600">Asignee:</p>
-        <p class="text-gray-600">Priority:</p>
-    <p class="font-semibold" id="modalassignee1"></p>
+        <p class="text-gray-600 text-[13px] sm:text-[16px]">Asignee:</p>
+        <p class="text-gray-600 text-[13px] sm:text-[16px]">Priority:</p>
+    <p class="font-semibold text-[13px] sm:text-[16px]" id="modalassignee1"></p>
     
-    <p class="badge badge-error" id="priority"></p></div>
+    <p class="badge badge-error text-[13px] sm:text-[16px]" id="priority"></p></div>
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
