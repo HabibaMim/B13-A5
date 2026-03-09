@@ -171,8 +171,10 @@ document.getElementById("btn-search").addEventListener("click",()=>{
     .then((data)=>{
     const allWords=data.data;
 displayCards(allWords, categoriesContainer);
-displayCards(allWords, closedContainer);
-displayCards(allWords, openContainer);
+ const allOpenWords=allWords.filter(card => card.status ==="open");
+displayCards(allOpenWords, openContainer);
+ const allClosedWords=allWords.filter(card => card.status ==="closed");
+displayCards(allClosedWords, closedContainer);
 
 });
 });
