@@ -14,6 +14,7 @@ const modallabel1 = document.getElementById("modallabel1");
 const description = document.getElementById("description");
 const modalassignee1 = document.getElementById("modalassignee1");
 const priority = document.getElementById("priority");
+const assigneetitle = document.getElementById("assigneetitle");
 
 
 function switchTab(tab){
@@ -138,6 +139,7 @@ function displayCards(cards, container){
         modalassignee1.textContent=cardDetails.assignee;
         priority.textContent=cardDetails.priority;
         priority.className=`${cardDetails.priority==="high" ? "badge badge-error" : cardDetails.priority==="medium" ? "badge badge-warning" : "badge badge-primary"}`
+        assigneetitle.innerHTML=`${cardDetails.assignee==="" ? "" : "Asignee:"}`
 
         modal.showModal();
     }
